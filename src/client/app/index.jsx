@@ -6,7 +6,7 @@ import AwesomeComponent from './AwesomeComponent.jsx';
 class App extends React.Component {
     render () {
         return (
-            <div>
+            <div class="container">
                 <p> Hello React!</p>
                 <AwesomeComponent />
             </div>
