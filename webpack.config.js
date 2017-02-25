@@ -1,13 +1,6 @@
 var path = require('path');
 const webpack = require('webpack');
 
-var I18nPlugin = require('i18n-webpack-plugin');
-
-var languages = {
-    "en": null,
-    "de": require('./src/client/locale/de.json')
-}
-
 var BUILD_DIR = path.resolve(__dirname, 'public');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
 
@@ -25,7 +18,18 @@ var config = {
                 loader  : 'babel-loader'
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true, 
+            beautify: false,
+            compress: {
+                screw_ie8: true,
+                warnings: false 
+            },
+            comments: false
+        })
+    ]
 };
 
 module.exports = config;

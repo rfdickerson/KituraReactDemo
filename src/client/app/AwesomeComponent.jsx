@@ -16,9 +16,10 @@ class AwesomeComponent extends React.Component {
     render() {
         return (
             <div>
-                Likes : <span>{this.state.likesCount}</span>
+                <h1>Like Counting Component</h1>
+                <b>Likes</b> : <span>{this.state.likesCount}</span>
                 <div><button onClick={this.onLike}>Like Me</button></div>
-                </div>
+            </div>
         );
     }
 

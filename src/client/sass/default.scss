@@ -4,15 +4,19 @@ $container-width: 100%;
 
 .container {
   width: $container-width;
+  margin: 5%;
 }
 
 $primaryColor: #eeffcc;
+$accentColor: #2268be;
 
 body {
     font: 100% $font-stack;
-    background: $primaryColor;
 }
 
-p {
-    color: $primaryColor;
+h1 {
+    color: $accentColor;
 }
+
+// p {
+// }
