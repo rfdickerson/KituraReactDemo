@@ -1,0 +1,25 @@
+nginx:
+    build: ./docker/nginx
+    links:
+        - node1:node1
+        - node2:node2
+        - node3:node3
+    ports:
+        - "80:80"
+    volumes:
+        - ./public:/static
+
+node1:
+    build: ./docker/swift
+    ports: 
+        - "8090"
+
+node2:
+    build: ./docker/swift
+    ports: 
+        - "8090"
+
+node3:
+    build: ./docker/swift
+    ports: 
+        - "8090"
