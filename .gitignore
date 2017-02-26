@@ -1,3 +1,5 @@
 node_modules/*
 dist/
 public/
+src/server/.build
+src/server/Packages
