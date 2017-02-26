@@ -39,10 +39,11 @@ gulp.task('swift', function() {
         continueOnError: true,
         pipeStdout: true
     }
+
     return gulp.src('./src/server/Sources/**/*.swift')
         .pipe(exec('cd src/server && swift build'))
-        .pipe(exec('kill -9 `lsof -i :8090 | awk "FNR == 2 { print $2 }"` || echo "hello" '))
-        .pipe(exec('cd src/server && .build/debug/Server'))
+        .pipe(exec('kill -3 `lsof -i :8090 | awk "FNR == 2 { print $2 }"`'))
+        .pipe(exec('cd src/server && .build/debug/Server&'))
         .pipe(exec.reporter(reportOptions));
 });
 
