@@ -21,7 +21,12 @@ gulp.task('sass:watch', function() {
 gulp.task('webpack', function() {
     return gulp.src('./src/client')
         .pipe(webpack( require('./webpack.config.js')))
-        .pipe(gulp.dest('public/js'));
+        .pipe(gulp.dest('public/'));
+});
+
+gulp.task('index', function() {
+    return gulp.src('./src/client/index.html')
+        .pipe(gulp.dest('public/'))
 });
 
 gulp.task('develop', function() {
@@ -66,4 +71,4 @@ gulp.task('run:server', function() {
 //         .pipe(exec.reporter(reportOptions));
 // });
 
-gulp.task('default', ['html', 'sass']);
+gulp.task('default', ['index','webpack','sass']);
