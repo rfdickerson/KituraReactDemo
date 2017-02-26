@@ -30,16 +30,18 @@ gulp.task('develop', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('./src/server/Sources/**/*.swift', ['swift','server']);
+    gulp.watch('./src/server/Sources/**/*.swift', ['compile:swift','run:server']);
+    gulp.watch('./src/client/sass/*.scss', ['sass']);
+    gulp.watch('./src/client/app/*.jsx', ['webpack'])
 });
 
-gulp.task('swift', function() {
+gulp.task('compile:swift', function() {
     return child.spawnSync('swift', ['build'], {
         cwd: 'src/server'
     })
 });
 
-gulp.task('server', function() {
+gulp.task('run:server', function() {
     if (server) 
         server.kill();
     server = child.spawn('./Server', [], {

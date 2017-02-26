@@ -10,6 +10,7 @@ let router = Router()
 router.get("/") {
     request, response, next in
     response.send("Hello, World! Robert Dickerson")
+    response.send("Just a test for you")
 
     next()
 }
