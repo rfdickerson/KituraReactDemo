@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var pug = require('gulp-pug');
 var webpack = require('webpack-stream');
-var shell = require('gulp-shell');
+var exec = require('gulp-exec');
 
 gulp.task('sass', function() {
     return gulp.src('./src/client/sass/*.scss')
@@ -34,12 +34,16 @@ gulp.task('develop', function() {
 });
 
 gulp.task('swift', function() {
-    return gulp.src('*.swift')
-        .pipe(shell([
-            'killall Server',
-            'swift build',
-            '.build/debug/Server'
-        ]));
+
+    var reportOptions = {
+        continueOnError: true,
+        pipeStdout: true
+    }
+    return gulp.src('./src/server/Sources/**/*.swift')
+        .pipe(exec('cd src/server && swift build'))
+        .pipe(exec('kill -9 `lsof -i :8090 | awk "FNR == 2 { print $2 }"` || echo "hello" '))
+        .pipe(exec('cd src/server && .build/debug/Server'))
+        .pipe(exec.reporter(reportOptions));
 });
 
 gulp.task('default', ['html', 'sass']);
