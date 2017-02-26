@@ -29,10 +29,7 @@ gulp.task('index', function() {
         .pipe(gulp.dest('public/'))
 });
 
-gulp.task('develop', function() {
-    gulp.watch('./src/server/Sources/**/*.swift', ['swift']);
-    gulp.watch('./src/client/sass/*.scss', ['sass']);
-});
+gulp.task('develop', ['compile:swift','run:server','watch']);
 
 gulp.task('watch', function() {
     gulp.watch('./src/server/Sources/**/*.swift', ['compile:swift','run:server']);
@@ -57,18 +54,4 @@ gulp.task('run:server', function() {
     });
 });
 
-// gulp.task('swift', function() {
-
-//     var reportOptions = {
-//         continueOnError: true,
-//         pipeStdout: true
-//     }
-
-//     return gulp.src('./src/server/Sources/**/*.swift')
-//         .pipe(exec('cd src/server && swift build'))
-//         .pipe(exec('kill -3 `lsof -i :8090 | awk "FNR == 2 { print $2 }"`'))
-//         .pipe(exec('cd src/server && .build/debug/Server&'))
-//         .pipe(exec.reporter(reportOptions));
-// });
-
-gulp.task('default', ['index','webpack','sass']);
+gulp.task('default', ['index','webpack','sass','compile:swift']);

@@ -9,12 +9,15 @@ let envVars = ProcessInfo.processInfo.environment
 
 let router = Router()
 
-router.all("/", middleware: StaticFileServer(path: "../../public"))
+if envVars["PRODUCTION"] else {
+    router.all("/", middleware: StaticFileServer(path: "../../public"))
+}
+
 
 router.get("/app") {
     request, response, next in
-    response.send("Hello, World! Robert Dickerson")
-    response.send("Just a test for you.")
+    response.send("Hello, World!")
+    response.send("Just a test for you")
 
     next()
 }
