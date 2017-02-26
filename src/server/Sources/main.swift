@@ -1,5 +1,6 @@
 import Kitura
 import Foundation
+import SwiftyJSON
 
 import HeliumLogger
 
@@ -9,17 +10,18 @@ let envVars = ProcessInfo.processInfo.environment
 
 let router = Router()
 
-if envVars["PRODUCTION"] else {
-    router.all("/", middleware: StaticFileServer(path: "../../public"))
-}
+
 
 
 router.get("/app") {
     request, response, next in
-    response.send("Hello, World!")
-    response.send("Just a test for you")
-
+    let fruits = ["apple", "orange", "banana"]
+    response.send(json: JSON(fruits))
     next()
+}
+
+if envVars["ENV"] != "PRODUCTION" {
+    router.all("/", middleware: StaticFileServer(path: "../../public"))
 }
 
 // Look for environment variables for PORT

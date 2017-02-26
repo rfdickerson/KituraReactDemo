@@ -9,6 +9,7 @@ class AwesomeComponent extends React.Component {
     }
 
     onLike () {
+        this.getMoviesFromApiAsync();
         let newLikesCount = this.state.likesCount + 1;
         this.setState({likesCount : newLikesCount});
     }
@@ -21,6 +22,17 @@ class AwesomeComponent extends React.Component {
                 <div><button onClick={this.onLike}>Like Me</button></div>
             </div>
         );
+    }
+
+    getMoviesFromApiAsync() {
+        return fetch('http://localhost:8090/app')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
 }

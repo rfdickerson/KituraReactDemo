@@ -29,7 +29,7 @@ gulp.task('index', function() {
         .pipe(gulp.dest('public/'))
 });
 
-gulp.task('develop', ['compile:swift','run:server','watch']);
+gulp.task('develop', ['webpack','compile:swift','run:server','watch']);
 
 gulp.task('watch', function() {
     gulp.watch('./src/server/Sources/**/*.swift', ['compile:swift','run:server']);
