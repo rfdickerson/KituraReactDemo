@@ -15,7 +15,7 @@ let router = Router()
 
 router.get("/app") {
     request, response, next in
-    let fruits = ["apple", "orange", "banana"]
+    let fruits = ["apple", "orange", "banana", "plum"]
     response.send(json: JSON(fruits))
     next()
 }
