@@ -6,10 +6,9 @@ import FlatButton from 'material-ui/FlatButton';
 const CardExampleExpandable = () => (
   <Card>
     <CardHeader
-      title="IBM Runtimes"
-      subtitle="Swift"
-      actAsExpander={false}
-      showExpandableButton={false}
+      title="Robert F. Dickerson"
+      subtitle="Swift Developer"
+      avatar="https://secure.gravatar.com/userimage/13166602/f8714e13426ac798e1dd9b89f714cfe3.jpg?size=200"
     />
     <CardTitle title="Card title" subtitle="Card subtitle" />
     <CardText>

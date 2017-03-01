@@ -7,7 +7,7 @@ import AppBar from 'material-ui/AppBar';
  */
 const AppBarExampleIcon = () => (
   <AppBar
-    title=""
+    title="Components"
     iconClassNameRight="muidocs-icon-navigation-expand-more"
   />
 );
